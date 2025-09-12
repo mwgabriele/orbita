@@ -51,4 +51,13 @@ INSERT INTO agencias (nome_agencia, pais)
 VALUES (?, ?)
 '''
 
-dados_eventos_astronomicos
+dados_eventos_astronomicos = '''
+pass
+'''
+
+with slite3.connect("orbita.db") as conexao:
+    conexao.execute(sql_create_table_eventos_astronomicos)
+    conexao.execute(sql_create_table_lancamentos_espaciais)
+    conexao.execute(sql_create_table_agencias)
+    conexao.commit()
+

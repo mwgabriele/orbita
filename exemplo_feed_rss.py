@@ -1,6 +1,6 @@
 import feedparser
 
-feed_url = "https://www.nasa.gov/news-release/feed/"
+feed_url = "https://www.revistaastrokids.com/rss/category/astronautica"
 
 blog_feed = feedparser.parse(feed_url)
 
