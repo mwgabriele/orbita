@@ -51,13 +51,32 @@ INSERT INTO agencias (nome_agencia, pais)
 VALUES (?, ?)
 '''
 
-dados_eventos_astronomicos = '''
-pass
+sql_delete_query = '''
+DELETE FROM lancamentos_espaciais
+WHERE nome_missao = ?;
 '''
 
-with slite3.connect("orbita.db") as conexao:
+dados = ('Long March 2C/YZ-1S | Unknown Payload',
+         'Falcon 9 Block 5 | Starlink Group 17-12',
+         'Falcon 9 Block 5 | Starlink Group 10-61',
+         'New Shepard | NS-35',
+         'Falcon 9 Block 5 | Starlink Group 10-27',
+         'Falcon 9 Block 5 | NROL-48',
+         'HASTE | JENNA',
+         'Falcon 9 Block 5 | IMAP & others',
+         'Atlas V 551 | Project Kuiper (KA-03)',
+         'Falcon 9 Block 5 | Starlink Group 17-11')
+
+with sqlite3.connect("orbita.db") as conexao:
     conexao.execute(sql_create_table_eventos_astronomicos)
     conexao.execute(sql_create_table_lancamentos_espaciais)
     conexao.execute(sql_create_table_agencias)
+
     conexao.commit()
+
+
+    curr = conexao.cursor()
+    curr.executemany(sql_delete_query, dados)
+
+    curr.commit()
 
