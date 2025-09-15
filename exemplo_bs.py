@@ -1,12 +1,16 @@
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
-url = ""
+# fazendo a requisição para a página de notícias
+url = 'https://spaceflightnow.com/launch-schedule/'
 response = requests.get(url)
+html = response.text
 
-soup = BeautifulSoup(response.text, 'html.parser')
+# criando o objeto beautifulsoup
+soup = BeautifulSoup(html, 'html.parser')
+# buscando todos os elementos que contém os títulos das notícias
+titulos = soup.find_all('span', class_="mission")
 
-titles = soup.find_all('title')
-for title in titles:
-    print(title.text)
-
+# extraindo e imprimindo os títulos
+for titulo in titulos:
+    print(titulo.text.strip())
