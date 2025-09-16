@@ -39,16 +39,16 @@ CREATE TABLE IF NOT EXISTS agencias (
 '''
 
 sql_inserir_dados_eventos_astronomicos = '''
-INSERT INTO eventos_astronomicos (nome_evento, tipo_evento, descricao, data, horario_utc3, local_visivel, duracao, corpo_principal, frequencia, observacao_comum)
+INSERT INTO eventos_astronomicos (nome_evento, tipo_evento, descricao, data, horario, local_visivel, duracao, corpo_principal, frequencia, observacao_comum)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 '''
 sql_inserir_dados_lancamentos_espaciais = '''
 INSERT INTO lancamentos_espaciais (nome_missao, veiculo_lancador, nome_agencia, carga, destino, data, horario_utc3, local_lancamento, resultado, descricao)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 '''
 sql_inserir_dados_agencias = '''
 INSERT INTO agencias (nome_agencia, pais)
-VALUES (?, ?);
+VALUES (?, ?)
 '''
 
 sql_delete_query = '''
@@ -56,16 +56,27 @@ DELETE FROM lancamentos_espaciais
 WHERE nome_missao = ?;
 '''
 
-dados = ("3D Tissue Chips",)
+dados = ('Long March 2C/YZ-1S | Unknown Payload',
+         'Falcon 9 Block 5 | Starlink Group 17-12',
+         'Falcon 9 Block 5 | Starlink Group 10-61',
+         'New Shepard | NS-35',
+         'Falcon 9 Block 5 | Starlink Group 10-27',
+         'Falcon 9 Block 5 | NROL-48',
+         'HASTE | JENNA',
+         'Falcon 9 Block 5 | IMAP & others',
+         'Atlas V 551 | Project Kuiper (KA-03)',
+         'Falcon 9 Block 5 | Starlink Group 17-11')
 
-
-with sqlite3.connect("missoes.db") as conexao:
+with sqlite3.connect("orbita.db") as conexao:
     conexao.execute(sql_create_table_eventos_astronomicos)
     conexao.execute(sql_create_table_lancamentos_espaciais)
     conexao.execute(sql_create_table_agencias)
 
-    curr = conexao.cursor()
-    curr.execute(sql_delete_query, dados)
-
     conexao.commit()
+
+
+    curr = conexao.cursor()
+    curr.executemany(sql_delete_query, dados)
+
+    curr.commit()
 
