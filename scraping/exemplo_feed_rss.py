@@ -1,6 +1,6 @@
 import feedparser
 
-feed_url = "https://www.revistaastrokids.com/rss/category/astronautica"
+feed_url = "https://sci.esa.int/newssyndication/rss/sciweb.xml"
 
 blog_feed = feedparser.parse(feed_url)
 
