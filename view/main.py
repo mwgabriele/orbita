@@ -1,2 +1,2 @@
-from textual.app import App
-from textual.widget import Widgets
+from textual.screen import Screen
+from textual.widget import (Header, Footer, Satatic)
