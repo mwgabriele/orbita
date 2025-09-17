@@ -36,6 +36,7 @@ Banco de dados SQLite. Tabelas:
 
 **objeto**
 - id
+- nome_objeto
 
 
 Ordem de páginas usadas no preenchimento de nome_missao do banco:

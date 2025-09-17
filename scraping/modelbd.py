@@ -44,11 +44,11 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 '''
 sql_inserir_dados_lancamentos_espaciais = '''
 INSERT INTO lancamentos_espaciais (nome_missao, veiculo_lancador, nome_agencia, carga, destino, data, horario_utc3, local_lancamento, resultado, descricao)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 '''
 sql_inserir_dados_agencias = '''
 INSERT INTO agencias (nome_agencia, pais)
-VALUES (?, ?)
+VALUES (?, ?);
 '''
 
 sql_delete_query = '''
@@ -56,14 +56,16 @@ DELETE FROM lancamentos_espaciais
 WHERE nome_missao = ?;
 '''
 
+dados = ("3D Tissue Chips",)
 
-with sqlite3.connect("orbita.db") as conexao:
+
+with sqlite3.connect("missoes.db") as conexao:
     conexao.execute(sql_create_table_eventos_astronomicos)
     conexao.execute(sql_create_table_lancamentos_espaciais)
     conexao.execute(sql_create_table_agencias)
 
     curr = conexao.cursor()
-    curr.executemany(sql_delete_query,)
+    curr.execute(sql_delete_query, dados)
 
     conexao.commit()
 
