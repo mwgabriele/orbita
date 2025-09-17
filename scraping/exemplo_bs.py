@@ -9,8 +9,4 @@ html = response.text
 # criando o objeto beautifulsoup
 soup = BeautifulSoup(html, 'html.parser')
 
-titulos = soup.select("ul.arrow-list a")
-
-# extraindo e imprimindo titulos
-for titulo in titulos:
-    print(titulo.text)
+print(soup.prettify())
