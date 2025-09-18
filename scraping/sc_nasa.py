@@ -13,10 +13,10 @@ soup = BeautifulSoup(response.text, 'html.parser')
 titulos = soup.select("p > a")
 
 # conectando ao banco
-conexao = sqlite3.connect("missoes.db")
+conexao = sqlite3.connect("teste.db")
 cursor = conexao.cursor()
 
-# garantindo que a tabela exista
+# garantindo que a tabela existe
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS lancamentos_espaciais (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,12 +25,11 @@ CREATE TABLE IF NOT EXISTS lancamentos_espaciais (
 """)
 
 # extraindo e inserindo no banco
-for i in titulos:
-    nome_missao = i.get_text(strip=True)
+for titulo in titulos:
+    nome_missao = titulo.get_text(strip=True)
     if nome_missao:
         print(nome_missao)
-        cursor.execute("INSERT INTO lancamentos_espaciais (nome_missao) VALUES (?)",
-                       (nome_missao,))
+        cursor.execute("INSERT INTO lancamentos_espaciais (nome_missao) VALUES (?)", (nome_missao,))
 
 conexao.commit()
 conexao.close()
