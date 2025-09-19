@@ -13,7 +13,7 @@ soup = BeautifulSoup(response.text, 'html.parser')
 titulos = soup.select("p > a")
 
 # conectando ao banco
-conexao = sqlite3.connect("teste.db")
+conexao = sqlite3.connect("missoes.db")
 cursor = conexao.cursor()
 
 # garantindo que a tabela existe

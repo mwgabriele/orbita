@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import sqlite3
+from control import missao
 
 url = 'https://www.spacelaunchschedule.com/category/spacex/'
 response = requests.get(url)
@@ -36,7 +37,7 @@ for agencia in agencias:
         cursor.execute("INSERT INTO lancamentos_espaciais (nome_agencia) VALUES (?)", (nome_agencia,))
 
 for local in locais:
-    local_lancamento = alocal.get_text(strip=True)
+    local_lancamento = local.get_text(strip=True)
     if local_lancamento:
         print(local_lancamento)
         cursor.execute("INSERT INTO lancamentos_espaciais (local_lancamento) VALUES (?)", (local_lancamento,))
