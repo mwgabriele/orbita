@@ -13,6 +13,6 @@ def consultar_missao():
 
     nome = input("Nome da missão: ")
 
-    nome_missao, veiculo_lancador = controller.consultar_missao(nome)
+    nome, veiculo = controller.consultar_missao(nome)
 
     print(f"Veículo: {veiculo}")
