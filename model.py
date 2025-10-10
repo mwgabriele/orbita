@@ -5,8 +5,6 @@ class Missao:
         self.nome_missao = nome_missao
         self.veiculo_lancador = veiculo_lancador
 
-####################################
-
 def cadastrar_missao(missao:Missao):
     sql = '''
         INSERT INTO lancamentos_espaciais (nome_missao, veiculo_lancador)

@@ -1,18 +1,18 @@
 import controller
 
-def cadastrar_missao():
-    # receber os dadods do usuario
-    print("Cadastrar Missão Espacial")
-    nome_missao = input("Nome: ")
-    veiculo_lancador = input("Veiculo lancador: ")
+#def cadastrar_missao():
+    # receber os dados do usuário
+    #print("Cadastrar Missão Espacial")
+    #nome_missao = input("Nome da missão: ")
+    #veiculo_lancador = input("Veículo lançador: ")
 
-    controller.cadastrar_missao(nome_missao, veiculo_lancador)
+    #controller.cadastrar_missao(nome_missao, veiculo_lancador)
 
 def consultar_missao():
     print("\nConsultar Missão Espacial:")
 
-    nome = input("Nome da missão: ")
+    nome_missao = input("Nome da missão: ")
 
-    nome, veiculo = controller.consultar_missao(nome)
+    nome_missao, veiculo_de_lancamento = controller.consultar_missao(nome_missao)
 
-    print(f"Veículo: {veiculo}")
+    print(f"Veículo de lançamento da missão {nome}: {veiculo}")

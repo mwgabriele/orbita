@@ -5,9 +5,9 @@ def cadastrar_missao(nome_missao, veiculo_lancador):
 
     model.cadastrar_missao(nova_missao)
 
-def consultar_missao(nome):
-    missao = model.Missao(veiculo_lancador, None)
-    resposta = model.consultar_missao(missao)
+def consultar_missao(nome_missao):
+    missao = model.Missao(veiculo_lancamento, None)
+    resposta = model.consult_missao(missao)
 
-     # retornando dados para a view  na forma de objetor (Produto)
-    return (resposta.nome, resposta.veiculo) # retornandop dados desestruturados para a view
+     # retornando dados para a view  na forma de objeto
+    return (resposta.nome_missao, resposta.veiculo_lancamento) # retornando dados desestruturados para a view
